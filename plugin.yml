@@ -1,0 +1,14 @@
+name: PluginName
+main: nao20010128nao\PluginMain
+version: 1.0.1
+api: [1.0.0]
+load: STARTUP
+author: nao20010128nao
+description: DESC
+website: https://github.com/nao20010128nao
+permissions:
+ oa.*:
+  children:
+   oa.all:
+    description: ""
+    default: op
