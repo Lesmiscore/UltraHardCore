@@ -1,6 +1,6 @@
 name: PluginName
 main: nao20010128nao\PluginMain
-version: 1.0.1
+version: 1.0.0
 api: [1.0.0]
 load: STARTUP
 author: nao20010128nao
