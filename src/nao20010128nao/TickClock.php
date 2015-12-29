@@ -16,6 +16,9 @@ class TickClock extends Task{
 		$this->times--;
 		$minutes=floor($now/60);
 		$seconds=      $now%60 ;
-		\pocketmine\Server::getInstance()->broadcastTip($minutes.":".$seconds);
+		\pocketmine\Server::getInstance()->broadcastTip($minutes.":".($seconds<10?"0":"").$seconds);
+		if($now==0){
+			$this->plugin->onTimeup();
+		}
 	}
 }
