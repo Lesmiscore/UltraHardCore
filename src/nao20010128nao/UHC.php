@@ -6,7 +6,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\utils\TextFormat;
 
-class PluginMain extends PluginBase implements Listener
+class UHC extends PluginBase implements Listener
 {
 	public function onEnable(){
 		@mkdir($this->getDataFolder());

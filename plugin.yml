@@ -1,5 +1,5 @@
-name: PluginName
-main: nao20010128nao\PluginMain
+name: UHC
+main: nao20010128nao/UHC
 version: 1.0.0
 api: [1.0.0]
 load: STARTUP
