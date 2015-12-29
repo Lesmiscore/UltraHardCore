@@ -6,9 +6,10 @@ use pocketmine\scheduler\Task;
 use pocketmine\block\Block;
 
 class TickClock extends Task{
-	private $times;
-	function __construct($tim){
+	private $times,$plugin;
+	function __construct($tim,$plugin){
 		$this->times=$tim;
+		$this->plugin=$plugin;
 	}
 	public function onRun($tick){
 		$now=$this->times;
