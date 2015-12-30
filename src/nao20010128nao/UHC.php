@@ -2,6 +2,8 @@
 
 namespace nao20010128nao;
 
+use pocketmine\Player;
+
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\utils\TextFormat;
@@ -12,6 +14,10 @@ use pocketmine\command\ConsoleCommandSender;
 
 use pocketmine\event\player\PlayerJoinEvent as pjoin;
 use pocketmine\event\player\PlayerQuitEvent as pquit;
+use pocketmine\event\player\PlayerDeathEvent as pdied;
+use pocketmine\event\entity\EntityDamageByEntityEvent as edbe;
+use pocketmine\event\entity\EntityDamageByBlockEvent as edbb;
+use pocketmine\event\entity\EntityDamageByChildEvent as edbc;
 
 class UHC extends PluginBase implements Listener
 {
@@ -161,9 +167,56 @@ class UHC extends PluginBase implements Listener
 		if(in_array($p,$this->out)){
 			unset($this->out[in_array($p,$this->out)]);
 		}
-		if(in_array($p,$this->ingame)){
-			unset($this->ingame[in_array($p,$this->ingame)]);
-			$this->gameOver($p);
+		$this->gameOver($p);
+	}
+	public function onPlayerDeath(pdied $ev){
+		$p=$ev->getEntity();
+		$this->gameOver($p);
+	}
+	
+	public function onEntityDamagedByEntity(edbe $ev){
+		$p=$ev->getEntity();
+		if(!($p instanceof Player)){
+			return;
+		}
+		switch($this->phase){
+			case 0://Waiting in the lobby
+			case 1://Starting the game
+				$ev->setCancelled();
+				break;
+			case 2:
+			case 3:
+				break;
+		}
+	}
+	public function onEntityDamagedByBlock(edbb $ev){
+		$p=$ev->getEntity();
+		if(!($p instanceof Player)){
+			return;
+		}
+		switch($this->phase){
+			case 0://Waiting in the lobby
+			case 1://Starting the game
+				$ev->setCancelled();
+				break;
+			case 2:
+			case 3:
+				break;
+		}
+	}
+	public function onEntityDamagedByChild(edbc $ev){
+		$p=$ev->getEntity();
+		if(!($p instanceof Player)){
+			return;
+		}
+		switch($this->phase){
+			case 0://Waiting in the lobby
+			case 1://Starting the game
+				$ev->setCancelled();
+				break;
+			case 2:
+			case 3:
+				break;
 		}
 	}
 }
