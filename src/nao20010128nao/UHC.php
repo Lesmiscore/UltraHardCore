@@ -48,6 +48,13 @@ class UHC extends PluginBase implements Listener
 				$this->start();
 				break;
 			case 2:
+				$this->getServer()->getScheduler()->scheduleRepeatingTask(new TickClock(10*60/*sec.*/,$this),20,20*60);
+				$this->getServer()->getScheduler()->scheduleRepeatingTask(new PopupBroadcast("The game is running...\nPhase 2"),10,20*60*2);
+				$this->phase=3;
+				break;
+			case 3:
+				$this->gameEnd();
+				$this->phase=0;
 				break;
 		}
 	}
@@ -71,9 +78,29 @@ class UHC extends PluginBase implements Listener
 		$this->getServer()->generateLevel($levName=$this->levName=$this->randomName());
 		$lev=$this->lev=$this->getServer()->getLevelByName($levName);
 		foreach($this->ingame as $ply){
-			$pos=new Position();
+			$pos=new Position(mt_rand(-600,600),128,mt_rand(-600,600),$levName);
+			while(true){
+				$b=$lev->getBlock($pos);
+				if($b->getId()==0){
+					$pos->x--;
+					continue;
+				}else{
+					$pos->x++;
+					break;
+				}
+			}
 			$ply->teleport($pos);
+			$ply->setGamemode(0);
 			$this->getLogger()->info($ply->getName());
+		}
+		$this->getServer()->getScheduler()->scheduleRepeatingTask(new TickClock(10*60/*sec.*/,$this),20,10*60);
+		$this->getServer()->getScheduler()->scheduleRepeatingTask(new PopupBroadcast("The game is running...\nPhase 1"),10,10*60*2);
+	}
+	public function gameEnd(){
+		$this->lev->unload();
+		$players=$this->getServer()->getOnlinePlayers();
+		foreach($players as $player){
+			$player->teleport($this->getServer()->getDefaultSpawn());
 		}
 	}
 	public function randName(){
