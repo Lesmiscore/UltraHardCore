@@ -104,6 +104,6 @@ class UHC extends PluginBase implements Listener
 		}
 	}
 	public function randName(){
-		
+		return /*substr(*/base64_encode(@Utils::getRandomBytes(48, false))/*, 3, 10)*/;
 	}
 }
