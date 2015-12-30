@@ -8,21 +8,27 @@ use pocketmine\utils\TextFormat;
 
 use pocketmine\level\Position;
 
+use pocketmine\command\ConsoleCommandSender;
+
 class UHC extends PluginBase implements Listener
 {
 	private $ingame,$out,$phase;
-	private $system;
+	private $system,$console;
+	
+	
+	private $lev,$levName;
 	public function onEnable(){
 		@mkdir($this->getDataFolder());
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
+		$this->console=new ConsoleCommandSender();
 		$this->phase=0;
-		if(file_exists($this->getDataFolder()."/system.json")){
+		/*if(file_exists($this->getDataFolder()."/system.json")){
 			$this->system=json_decode(file_get_contents($this->getDataFolder()."/system.json"));
 		}else{
 			$this->system=$sys=array();
 			$sys["lobby"]=array("level"=>"world","x"=>0,"y"=>0,"z"=>0);
 			file_put_contents(json_encode($sys),$this->getDataFolder()."/system.json");
-		}
+		}*/
 		
 		$this->onTimeup();
 	}
@@ -40,12 +46,14 @@ class UHC extends PluginBase implements Listener
 				$this->phase=2;
 				$this->start();
 				break;
+			case 2:
+				break;
 		}
 	}
 	public function start(){
 		$players=$this->getServer()->getOnlinePlayers();
 		if(count($players)<8){
-			$phase=0;
+			$this->phase=0;
 			$this->onTimeup();
 			return;
 		}
@@ -59,11 +67,12 @@ class UHC extends PluginBase implements Listener
 				$ing[i]=$players[i];
 			}
 		}
-		$this->getServer()->generateLevel();
-		$lev=null;
-		foreach($this->ingame as $le){
-			//$le->teleport();
-			$this->getLogger()->info($le->getName());
+		$this->getServer()->generateLevel($levName=$this->levName=$this->randomName());
+		$lev=$this->lev=$this->getServer()->getLevelByName($levName);
+		foreach($this->ingame as $ply){
+			$pos=new Position();
+			$ply->teleport($pos);
+			$this->getLogger()->info($ply->getName());
 		}
 	}
 	public function randName(){
