@@ -38,7 +38,8 @@ class UHC extends PluginBase implements Listener
 	public function onTimeup(){
 		switch($this->phase){
 			case 0://Waiting in the lobby
-				$this->getServer()->getScheduler()->scheduleRepeatingTask(new TickClock(10*60/*sec.*/,$this,"Waiting for players..."),20,10*60);
+				$this->getServer()->getScheduler()->scheduleRepeatingTask(new TickClock(10*60/*sec.*/,$this),20,10*60);
+				$this->getServer()->getScheduler()->scheduleRepeatingTask(new PopupBroadcast("Waiting for players..."),10,10*60*2);
 				//$this->getServer()->getScheduler()->scheduleDelayedTask(new GameStart($this));
 				$this->phase=1;
 				break;
