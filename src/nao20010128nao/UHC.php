@@ -101,6 +101,7 @@ class UHC extends PluginBase implements Listener
 		$players=$this->getServer()->getOnlinePlayers();
 		foreach($players as $player){
 			$player->teleport($this->getServer()->getDefaultSpawn());
+			$player->setGamemode(3);
 		}
 	}
 	public function randName(){
