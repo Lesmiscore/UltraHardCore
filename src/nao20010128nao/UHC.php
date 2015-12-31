@@ -18,6 +18,9 @@ use pocketmine\event\player\PlayerDeathEvent as pdied;
 use pocketmine\event\entity\EntityDamageByEntityEvent as edbe;
 use pocketmine\event\entity\EntityDamageByBlockEvent as edbb;
 use pocketmine\event\entity\EntityDamageByChildEvent as edbc;
+use pocketmine\event\player\PlayerMoveEvent;
+use pocketmine\event\block\BlockBreakEvent;
+use pocketmine\event\block\BlockPlaceEvent;
 
 class UHC extends PluginBase implements Listener
 {
@@ -144,7 +147,23 @@ class UHC extends PluginBase implements Listener
 		$this->gameover->dst=$this->out;
 		$this->ph1->dst=$this->ph2->dst=$this->ingame;
 	}
-	
+	public function checkBorder($player){
+		$level = $this->getServer()->getLevelByName($player["level"]);
+		$t = new Vector2($player["x"], $player["z"]);
+		$s = new Vector2($level->getSpawn()->getX(), $level->getSpawn()->getZ());
+		$worlds = $this->config->get("worlds");
+		foreach($worlds as $key => $value){
+			if(!empty($value[$player["level"]])){
+				$r = $value[$player["level"]];
+			}
+		}
+		if($t->distance($s) >= $r){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	
 	  ////////////
 	 // EVENTS //
@@ -223,6 +242,39 @@ class UHC extends PluginBase implements Listener
 			case 2:
 			case 3:
 				break;
+		}
+	}
+	
+	public function onPlayerMove(PlayerMoveEvent $event){
+		$player = $event->getPlayer();
+		if($player instanceof Player){
+			$border = $this->checkBorder(array("level" => $player->getLevel()->getName(), "x" => round($player->getX()), "z" => round($player->getZ())));
+			if($border){
+				$event->setCancelled(true);
+				$player->sendMessage("Don't go out of the border!");
+			}
+		}
+	}
+
+	public function onBlockPlace(BlockPlaceEvent $event){
+		$block = $event->getBlock();
+		if($block instanceof Block){
+			$border = $this->checkBorder(array("level" => $block->getLevel()->getName(), "x" => round($block->getX()), "z" => round($block->getZ())));
+			if($border){
+				$event->setCancelled(true);
+				$player->sendMessage("Don't place blocks out of the border!");
+			}
+		}
+	}
+
+	public function onBlockBreak(BlockBreakEvent $event){
+		$block = $event->getBlock();
+		if($block instanceof Block){
+			$border = $this->checkBorder(array("level" => $block->getLevel()->getName(), "x" => round($block->getX()), "z" => round($block->getZ())));
+			if($border){
+				$event->setCancelled(true);
+				$player->sendMessage("Don't break blocks out of the border!");
+			}
 		}
 	}
 }
