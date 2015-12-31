@@ -24,12 +24,18 @@ class UHC extends PluginBase implements Listener
 	private $ingame,$out,$phase;
 	private $system,$console;
 	
-	
+	private $wfp,$ph2,$ph1,$gameover;
 	private $lev,$levName;
 	public function onEnable(){
 		@mkdir($this->getDataFolder());
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->console=new ConsoleCommandSender();
+		
+		$this->ph1=new PopupBroadcast("The game is running...\nPhase 1 - Collect Anything!");
+		$this->ph2=new PopupBroadcast("The game is running...\nPhase 2 - Live or Die!");
+		$this->gameover=new PopupBroadcast("GAME OVER");
+		$this->wfp=new PopupBroadcast("Waiting for players...");
+		
 		$this->phase=0;
 		
 		$this->onTimeup();
@@ -45,7 +51,7 @@ class UHC extends PluginBase implements Listener
 		switch($this->phase){
 			case 0://Waiting in the lobby
 				$this->getServer()->getScheduler()->scheduleRepeatingTask(new TickClock(10*60/*sec.*/,$this),20,10*60);
-				$this->getServer()->getScheduler()->scheduleRepeatingTask(new PopupBroadcast("Waiting for players..."),10,10*60*2);
+				$this->getServer()->getScheduler()->scheduleRepeatingTask($this->wfp,10,10*60*2);
 				//$this->getServer()->getScheduler()->scheduleDelayedTask(new GameStart($this));
 				$this->phase=1;
 				break;
@@ -54,8 +60,9 @@ class UHC extends PluginBase implements Listener
 				$this->start();
 				break;
 			case 2://PvP Mode
+				$this->ph2->dst=$this->ingame;
 				$this->getServer()->getScheduler()->scheduleRepeatingTask(new TickClock(10*60/*sec.*/,$this),20,20*60);
-				$this->getServer()->getScheduler()->scheduleRepeatingTask(new PopupBroadcast("The game is running...\nPhase 2 - Live or Die!"),10,20*60*2);
+				$this->getServer()->getScheduler()->scheduleRepeatingTask($this->ph2,10,20*60*2);
 				$this->phase=3;
 				break;
 			case 3://End of the game
@@ -89,24 +96,15 @@ class UHC extends PluginBase implements Listener
 		$this->getServer()->broadcastMessage("Fine. Let's start!");
 		foreach($this->ingame as $ply){
 			$pos=new Position(mt_rand(-600,600),128,mt_rand(-600,600),$levName);
-			while(true){
-				$b=$lev->getBlock($pos);
-				if($b->getId()==0){
-					$pos->x--;
-					continue;
-				}else{
-					$pos->x++;
-					break;
-				}
-			}
 			$ply->teleport($pos);
 			$ply->setGamemode(0);
 			$ply->setHealth(20);
 			$this->getLogger()->info($ply->getName());
 		}
 		$this->getServer()->getScheduler()->scheduleRepeatingTask(new TickClock(10*60/*sec.*/,$this),20,10*60);
-		$this->getServer()->getScheduler()->scheduleRepeatingTask(new PopupBroadcast("The game is running...\nPhase 1 - Collect Anything!",$this->ingame),10,10*60*2);
-		$this->getServer()->getScheduler()->scheduleRepeatingTask(new PopupBroadcast("GAME OVER",$this->out),10,30*60*2);
+		$this->ph2->dst=$this->ingame;
+		$this->getServer()->getScheduler()->scheduleRepeatingTask($this->ph1,10,10*60*2);
+		$this->getServer()->getScheduler()->scheduleRepeatingTask($this->gameover,10,30*60*2);
 	}
 	public function gameEnd(){
 		$this->lev->unload();
@@ -117,6 +115,11 @@ class UHC extends PluginBase implements Listener
 		}
 		$this->getServer()->broadcastMessage("Game ended!");
 		$this->ingame=$this->out=null;
+		
+		$this->ph2->disable();
+		$this->ph1->disable();
+		$this->gameover->disable();
+		$this->wfp->sendEveryone();
 	}
 	public function randName(){
 		return /*substr(*/base64_encode(@Utils::getRandomBytes(48, false))/*, 3, 10)*/;
@@ -137,6 +140,9 @@ class UHC extends PluginBase implements Listener
 			$p->kill();
 			$p->sendMessage("GAME OVER!");
 		}
+		
+		$this->gameover->dst=$this->out;
+		$this->ph1->dst=$this->ph2->dst=$this->ingame;
 	}
 	
 	
@@ -159,9 +165,6 @@ class UHC extends PluginBase implements Listener
 	}
 	public function onPlayerQuit(pquit $ev){
 		$p=$ev->getPlayer();
-		if(in_array($p,$this->out)){
-			unset($this->out[in_array($p,$this->out)]);
-		}
 		$this->gameOver($p);
 	}
 	public function onPlayerDeath(pdied $ev){
