@@ -108,6 +108,7 @@ class UHC extends PluginBase implements Listener
 			}
 			$ply->teleport($pos);
 			$ply->setGamemode(0);
+			$ply->setHealth(20);
 			$this->getLogger()->info($ply->getName());
 		}
 		$this->getServer()->getScheduler()->scheduleRepeatingTask(new TickClock(10*60/*sec.*/,$this),20,10*60);
@@ -138,6 +139,7 @@ class UHC extends PluginBase implements Listener
 		}
 		$this->out[]=$p;
 		$p->setGamemode(3);
+		$p->setHealth(20);
 		if($wasInGame){
 			$p->kill();
 			$p->sendMessage("GAME OVER!");
@@ -171,7 +173,15 @@ class UHC extends PluginBase implements Listener
 	}
 	public function onPlayerDeath(pdied $ev){
 		$p=$ev->getEntity();
-		$this->gameOver($p);
+		switch($this->phase){
+			case 0://Waiting in the lobby
+				break;
+			case 1://Starting the game
+			case 2:
+			case 3:
+				$this->gameOver($p);
+				break;
+		}
 	}
 	
 	public function onEntityDamagedByEntity(edbe $ev){
