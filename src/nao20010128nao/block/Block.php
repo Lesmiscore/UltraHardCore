@@ -912,13 +912,6 @@ class Block extends \pocketmine\block\Block{
 		return "Unknown";
 	}
 
-	/**
-	 * @return int
-	 */
-	final public function getId(){
-		return $this->id;
-	}
-
 	public function addVelocityToEntity(Entity $entity, Vector3 $vector){
 
 	}
