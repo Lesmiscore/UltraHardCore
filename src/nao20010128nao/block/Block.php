@@ -660,6 +660,11 @@ class Block extends \pocketmine\block\Block{
 	 * @return void
 	 */
 	public function onUpdate($type){
-		
+		if($this->getLevel()->getName()==\nao20010128nao\UHC::$instance->levName){
+			$border=\nao20010128nao\UHC::$instance->border;
+			if((abs($this->getX())>$border)|(abs($this->getZ())>$border)){
+				$this->getLevel()->setBlock($this,\pocketmine\block\Block::get(7));
+			}
+		}
 	}
 }

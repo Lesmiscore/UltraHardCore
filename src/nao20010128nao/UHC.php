@@ -24,6 +24,8 @@ use pocketmine\event\block\BlockPlaceEvent;
 
 class UHC extends PluginBase implements Listener
 {
+	public static $instance;
+	
 	private $ingame,$out,$phase;
 	private $system,$console;
 	
@@ -32,6 +34,7 @@ class UHC extends PluginBase implements Listener
 	private $borderXZ;
 	public function onEnable(){
 		@mkdir($this->getDataFolder());
+		UHC::$instance=$this;
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->console=new ConsoleCommandSender();
 		\nao20010128nao\block\Block::init();
@@ -187,7 +190,7 @@ class UHC extends PluginBase implements Listener
 		$player=$ev->getPlayer();
 		switch($this->phase){
 			case 1:
-				$player->teleport($this->getServer()->getDefaultSpawn());
+				$player->teleport($player->getSpawn());
 				$player->setGamemode(3);
 				break;
 			case 2:
