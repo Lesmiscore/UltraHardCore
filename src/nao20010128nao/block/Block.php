@@ -419,13 +419,6 @@ class Block extends \pocketmine\block\Block{
 
 	public static function init(){
 		if(self::$list === null){
-			self::$list = new \SplFixedArray(256);
-			self::$fullList = new \SplFixedArray(4096);
-			self::$light = new \SplFixedArray(256);
-			self::$lightFilter = new \SplFixedArray(256);
-			self::$solid = new \SplFixedArray(256);
-			self::$hardness = new \SplFixedArray(256);
-			self::$transparent = new \SplFixedArray(256);
 /***************************************************************************************************\
 |------------------------------->>>> Location of // is important!! <<<<-----------------------------|
 |			// <-- this level of indentation means that it is not yet in pocketmine     |
