@@ -29,6 +29,7 @@ class UHC extends PluginBase implements Listener
 	
 	private $wfp,$ph2,$ph1,$gameover;
 	private $lev,$levName;
+	private $borderXZ;
 	public function onEnable(){
 		@mkdir($this->getDataFolder());
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
@@ -111,7 +112,7 @@ class UHC extends PluginBase implements Listener
 	}
 	public function gameEnd(){
 		$this->lev->unload();
-		$this->"level/".$this->levName
+		$this->delTree("level/".$this->levName);
 		$players=$this->getServer()->getOnlinePlayers();
 		foreach($players as $player){
 			$player->teleport($this->getServer()->getDefaultSpawn());
@@ -150,8 +151,11 @@ class UHC extends PluginBase implements Listener
 	}
 	public function checkBorder($player){
 		$level = $this->getServer()->getLevelByName($player["level"]);
+		if($this->levName!=$player["level"]){
+			return false;
+		}
 		$t = new Vector2($player["x"], $player["z"]);
-		$s = new Vector2($level->getSpawn()->getX(), $level->getSpawn()->getZ());
+		$s = new Vector2($this->borderXZ, $this->borderXZ);
 		$worlds = [$this->getServer()->getDefaultSpawn()->getLevel()->getName()];
 		foreach($worlds as $key => $value){
 			if(!empty($value[$player["level"]])){
