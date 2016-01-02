@@ -186,79 +186,41 @@ class UHC extends PluginBase implements Listener
 	public function onPlayerJoin(pjoin $ev){
 		$player=$ev->getPlayer();
 		switch($this->phase){
-			case 0://Waiting in the lobby
+			case 1:
 				$player->teleport($this->getServer()->getDefaultSpawn());
 				$player->setGamemode(3);
 				break;
-			case 1://Starting the game
 			case 2:
 			case 3:
+			case 0:
 				$this->gameOver($player);
 				break;
 		}
 	}
 	public function onPlayerQuit(pquit $ev){
 		$p=$ev->getPlayer();
-		$this->gameOver($p);
+		switch($this->phase){
+			case 1:
+				break;
+			case 2:
+			case 3:
+			case 0:
+				$this->gameOver($player);
+				break;
+		}
 	}
 	public function onPlayerDeath(pdied $ev){
 		$p=$ev->getEntity();
 		switch($this->phase){
-			case 0://Waiting in the lobby
+			case 1:
 				break;
-			case 1://Starting the game
 			case 2:
 			case 3:
+			case 0:
 				$this->gameOver($p);
 				break;
 		}
 	}
-	
-	/*public function onEntityDamagedByEntity(edbe $ev){
-		$p=$ev->getEntity();
-		if(!($p instanceof Player)){
-			return;
-		}
-		switch($this->phase){
-			case 0://Waiting in the lobby
-			case 1://Starting the game
-				$ev->setCancelled();
-				break;
-			case 2:
-			case 3:
-				break;
-		}
-	}*/
-	/*public function onEntityDamagedByBlock(edbb $ev){
-		$p=$ev->getEntity();
-		if(!($p instanceof Player)){
-			return;
-		}
-		switch($this->phase){
-			case 0://Waiting in the lobby
-			case 1://Starting the game
-				$ev->setCancelled();
-				break;
-			case 2:
-			case 3:
-				break;
-		}
-	}*/
-	/*public function onEntityDamagedByChild(edbc $ev){
-		$p=$ev->getEntity();
-		if(!($p instanceof Player)){
-			return;
-		}
-		switch($this->phase){
-			case 0://Waiting in the lobby
-			case 1://Starting the game
-				$ev->setCancelled();
-				break;
-			case 2:
-			case 3:
-				break;
-		}
-	}*/
 	
 	public function onPlayerMove(PlayerMoveEvent $event){
 		$player = $event->getPlayer();
