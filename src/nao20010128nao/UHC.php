@@ -34,7 +34,7 @@ class UHC extends PluginBase implements Listener
 	private $borderXZ;
 	public function onEnable(){
 		@mkdir($this->getDataFolder());
-		UHC::$instance=$this;
+		self::$instance=$this;
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->console=new ConsoleCommandSender();
 		\nao20010128nao\block\Block::init();
