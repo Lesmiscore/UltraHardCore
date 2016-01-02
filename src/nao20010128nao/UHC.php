@@ -214,22 +214,7 @@ class UHC extends PluginBase implements Listener
 		}
 	}
 	
-	/*public function onEntityDamagedByEntity(edbe $ev){
-		$p=$ev->getEntity();
-		if(!($p instanceof Player)){
-			return;
-		}
-		switch($this->phase){
-			case 0://Waiting in the lobby
-			case 1://Starting the game
-				$ev->setCancelled();
-				break;
-			case 2:
-			case 3:
-				break;
-		}
-	}*/
-	public function onEntityDamagedByBlock(edbb $ev){
+	public function onEntityDamagedByEntity(edbe $ev){
 		$p=$ev->getEntity();
 		if(!($p instanceof Player)){
 			return;
@@ -244,6 +229,21 @@ class UHC extends PluginBase implements Listener
 				break;
 		}
 	}
+	/*public function onEntityDamagedByBlock(edbb $ev){
+		$p=$ev->getEntity();
+		if(!($p instanceof Player)){
+			return;
+		}
+		switch($this->phase){
+			case 0://Waiting in the lobby
+			case 1://Starting the game
+				$ev->setCancelled();
+				break;
+			case 2:
+			case 3:
+				break;
+		}
+	}*/
 	public function onEntityDamagedByChild(edbc $ev){
 		$p=$ev->getEntity();
 		if(!($p instanceof Player)){
