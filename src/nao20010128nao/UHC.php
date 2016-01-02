@@ -109,9 +109,10 @@ class UHC extends PluginBase implements Listener
 			$this->getLogger()->info($ply->getName());
 		}
 		$this->getServer()->getScheduler()->scheduleRepeatingTask(new TickClock(10*60/*sec.*/,$this),20,10*60);
-		$this->ph2->dst=$this->ingame;
+		$this->ph1->dst=$this->ingame;
 		$this->getServer()->getScheduler()->scheduleRepeatingTask($this->ph1,10,10*60*2);
 		$this->getServer()->getScheduler()->scheduleRepeatingTask($this->gameover,10,30*60*2);
+		$this->getServer()->getScheduler()->scheduleRepeatingTask($this->shrinkBorder,10,10*60*2);
 	}
 	public function gameEnd(){
 		$this->lev->unload();
