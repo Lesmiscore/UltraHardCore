@@ -27,7 +27,7 @@ class UHC extends PluginBase implements Listener
 	private $ingame,$out,$phase;
 	private $system,$console;
 	
-	private $wfp,$ph2,$ph1,$gameover;
+	private $wfp,$ph2,$ph1,$gameover,$shrinkBorder;
 	private $lev,$levName;
 	private $borderXZ;
 	public function onEnable(){
@@ -39,6 +39,7 @@ class UHC extends PluginBase implements Listener
 		$this->ph2=new PopupBroadcast("The game is running...\nPhase 2 - Live or Die!");
 		$this->gameover=new PopupBroadcast("GAME OVER");
 		$this->wfp=new PopupBroadcast("Waiting for players...");
+		$this->shrinkBorder=new ShrinkBorder($this);
 		
 		$this->phase=0;
 		
@@ -95,6 +96,7 @@ class UHC extends PluginBase implements Listener
 			}
 		}
 		$this->out=array();
+		$this->borderXZ=30*60+10;
 		$this->getServer()->generateLevel($levName=$this->levName=$this->randomName());
 		$lev=$this->lev=$this->getServer()->getLevelByName($levName);
 		$this->getServer()->broadcastMessage("Fine. Let's start!");
