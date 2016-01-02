@@ -172,7 +172,7 @@ class UHC extends PluginBase implements Listener
 		}
 	}
 	public static function delTree($dir) { 
-		$files =array_diff(scandir($dir), array('.','..')); 
+		$files=array_diff(scandir($dir), array('.','..')); 
 		foreach ($files as $file) { 
 			(is_dir("$dir/$file") && !is_link($dir)) ?delTree("$dir/$file") :unlink("$dir/$file"); 
 		} 
