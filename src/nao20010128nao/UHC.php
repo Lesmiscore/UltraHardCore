@@ -171,9 +171,9 @@ class UHC extends PluginBase implements Listener
 			return false;
 		}
 	}
-	public static function delTree($dir) { 
+	public function delTree($dir) { 
 		$files=array_diff(scandir($dir), array('.','..')); 
-		foreach ($files as $file) { 
+		foreach ($files as $file) { 
 			(is_dir("$dir/$file") && !is_link($dir)) ?delTree("$dir/$file") :unlink("$dir/$file"); 
 		} 
 		return rmdir($dir); 
@@ -182,7 +182,7 @@ class UHC extends PluginBase implements Listener
 	  ////////////
 	 // EVENTS //
 	////////////
-	public funtion onPlayerJoin(pjoin $ev){
+	public function onPlayerJoin(pjoin $ev){
 		$player=$ev->getPlayer();
 		switch($this->phase){
 			case 0://Waiting in the lobby
