@@ -46,7 +46,7 @@ use pocketmine\plugin\Plugin;
 use pocketmine\nbt\tag\Int;
 
 
-class Block extends Position implements Metadatable{
+class Block extends \pocketmine\block\Block{
 	const AIR = 0;
 	const STONE = 1;
 	const GRASS = 2;
