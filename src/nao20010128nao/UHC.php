@@ -15,7 +15,7 @@ use pocketmine\command\ConsoleCommandSender;
 use pocketmine\event\player\PlayerJoinEvent as pjoin;
 use pocketmine\event\player\PlayerQuitEvent as pquit;
 use pocketmine\event\player\PlayerDeathEvent as pdied;
-use pocketmine\event\entity\EntityDamaged as ed;
+use pocketmine\event\entity\EntityDamageEvent as ed;
 use pocketmine\event\player\PlayerMoveEvent;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\block\BlockPlaceEvent;
