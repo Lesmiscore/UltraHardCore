@@ -214,7 +214,7 @@ class UHC extends PluginBase implements Listener
 		}
 	}
 	
-	public function onEntityDamagedByEntity(edbe $ev){
+	/*public function onEntityDamagedByEntity(edbe $ev){
 		$p=$ev->getEntity();
 		if(!($p instanceof Player)){
 			return;
@@ -228,7 +228,7 @@ class UHC extends PluginBase implements Listener
 			case 3:
 				break;
 		}
-	}
+	}*/
 	public function onEntityDamagedByBlock(edbb $ev){
 		$p=$ev->getEntity();
 		if(!($p instanceof Player)){
