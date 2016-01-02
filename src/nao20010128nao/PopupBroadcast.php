@@ -13,7 +13,7 @@ class PopupBroadcast extends Task{
 		$this->dst=$dest;
 	}
 	public function onRun($tick){
-		\pocketmine\Server::getInstance()->broadcastPopup($this->l2,$this>dst);
+		\pocketmine\Server::getInstance()->broadcastPopup($this->l2,$this->dst);
 	}
 	public function disable(){
 		$this->dst=array();
