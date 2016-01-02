@@ -24,7 +24,7 @@
  *
 */
 
-namespace pocketmine\block;
+namespace nao20010128nao\block;
 
 use pocketmine\math\Vector3;
 use pocketmine\item\Item;

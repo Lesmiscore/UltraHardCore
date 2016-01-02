@@ -24,7 +24,7 @@
  *
 */
 
-namespace pocketmine\block;
+namespace nao20010128nao\block;
 
 use pocketmine\inventory\EnchantInventory;
 use pocketmine\item\Item;

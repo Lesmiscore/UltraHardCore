@@ -24,7 +24,7 @@
  *
 */
 
-namespace pocketmine\block;
+namespace nao20010128nao\block;
 
 
 class FenceGateBirch extends FenceGate{

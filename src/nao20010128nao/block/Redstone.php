@@ -24,7 +24,7 @@
  *
 */
 
-namespace pocketmine\block;
+namespace nao20010128nao\block;
 
 interface Redstone{
 	public function isRedstone();

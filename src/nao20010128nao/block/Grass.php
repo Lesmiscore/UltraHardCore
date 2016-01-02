@@ -24,7 +24,7 @@
  *
 */
 
-namespace pocketmine\block;
+namespace nao20010128nao\block;
 
 use pocketmine\event\block\BlockSpreadEvent;
 use pocketmine\item\Item;
