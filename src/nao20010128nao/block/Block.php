@@ -22,7 +22,7 @@
 /**
  * All Block classes are in here
  */
-namespace pocketmine\block;
+namespace nao20010128nao\block;
 
 use pocketmine\entity\Entity;
 

@@ -18,7 +18,7 @@
  * 
  *
 */
-namespace pocketmine\block;
+namespace nao20010128nao\block;
 
 use pocketmine\item\Item;
 use pocketmine\item\Tool;

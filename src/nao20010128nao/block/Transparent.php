@@ -19,7 +19,7 @@
  *
 */
 
-namespace pocketmine\block;
+namespace nao20010128nao\block;
 
 
 abstract class Transparent extends Block{

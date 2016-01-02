@@ -19,7 +19,7 @@
  *
 */
 
-namespace pocketmine\block;
+namespace nao20010128nao\block;
 
 use pocketmine\entity\Entity;
 use pocketmine\event\block\BlockGrowEvent;
