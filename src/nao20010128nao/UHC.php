@@ -255,6 +255,12 @@ class UHC extends PluginBase implements Listener
 			}
 		}
 	}
+	public function onBlockBreak2(BlockBreakEvent $event){
+		$player = $event->getPlayer();
+		if($player->getGamemode()==3){
+			$event->setCancelled();
+		}
+	}
 	public function onEntityDamaged(ed $ev){
 		$p=$ev->getEntity();
 		if(!($p instanceof Player)){
