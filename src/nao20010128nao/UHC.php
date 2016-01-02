@@ -111,6 +111,7 @@ class UHC extends PluginBase implements Listener
 	}
 	public function gameEnd(){
 		$this->lev->unload();
+		$this->"level/".$this->levName
 		$players=$this->getServer()->getOnlinePlayers();
 		foreach($players as $player){
 			$player->teleport($this->getServer()->getDefaultSpawn());
