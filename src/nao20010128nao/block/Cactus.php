@@ -2,29 +2,24 @@
 
 /*
  *
- *  _                       _           _ __  __ _             
- * (_)                     (_)         | |  \/  (_)            
- *  _ _ __ ___   __ _  __ _ _  ___ __ _| | \  / |_ _ __   ___  
- * | | '_ ` _ \ / _` |/ _` | |/ __/ _` | | |\/| | | '_ \ / _ \ 
- * | | | | | | | (_| | (_| | | (_| (_| | | |  | | | | | |  __/ 
- * |_|_| |_| |_|\__,_|\__, |_|\___\__,_|_|_|  |_|_|_| |_|\___| 
- *                     __/ |                                   
- *                    |___/                                                                     
- * 
- * This program is a third party build by ImagicalMine.
- * 
- * PocketMine is free software: you can redistribute it and/or modify
+ *  ____            _        _   __  __ _                  __  __ ____  
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
+ * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
+ *
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author ImagicalMine Team
- * @link http://forums.imagicalcorp.ml/
+ * @author PocketMine Team
+ * @link http://www.pocketmine.net/
  * 
  *
 */
 
-namespace nao20010128nao\block;
+namespace pocketmine\block;
 
 use pocketmine\entity\Entity;
 use pocketmine\event\block\BlockGrowEvent;
@@ -77,13 +72,12 @@ class Cactus extends Transparent{
 	public function onUpdate($type){
 		if($type === Level::BLOCK_UPDATE_NORMAL){
 			$down = $this->getSide(0);
-			$up = $this->getSide(1);
 			if($down->getId() !== self::SAND and $down->getId() !== self::CACTUS){
-				$this->getLevel()->scheduleUpdate($this, 0);
+				$this->getLevel()->useBreakOn($this);
 			}else{
 				for($side = 2; $side <= 5; ++$side){
 					$b = $this->getSide($side);
-					if(!$b->canBeFlowedInto() && $b->getId() !== Block::SNOW_LAYER){// Snow can be stacked to a full block beside a cactus without destroying the cactus.
+					if(!$b->canBeFlowedInto()){
 						$this->getLevel()->useBreakOn($this);
 					}
 				}
@@ -107,8 +101,6 @@ class Cactus extends Transparent{
 					$this->getLevel()->setBlock($this, $this);
 				}
 			}
-		}elseif($type === Level::BLOCK_UPDATE_SCHEDULED){
-			$this->getLevel()->useBreakOn($this);
 		}
 
 		return false;
@@ -121,7 +113,7 @@ class Cactus extends Transparent{
 			$block1 = $this->getSide(3);
 			$block2 = $this->getSide(4);
 			$block3 = $this->getSide(5);
-			if(($block0->getId() === Block::AIR || $block0->getId() === Block::SNOW_LAYER) and ($block1->getId() === Block::AIR || $block1->getId() === Block::SNOW_LAYER) and ($block2->getId() === Block::AIR || $block2->getId() === Block::SNOW_LAYER) and ($block3->getId() === Block::AIR || $block3->getId() === Block::SNOW_LAYER)){ // Snow can be stacked to a full block beside a cactus without destroying the cactus.
+			if($block0->isTransparent() === true and $block1->isTransparent() === true and $block2->isTransparent() === true and $block3->isTransparent() === true){
 				$this->getLevel()->setBlock($this, $this, true);
 
 				return true;

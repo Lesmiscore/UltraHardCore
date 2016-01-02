@@ -19,7 +19,7 @@
  *
 */
 
-namespace nao20010128nao\block;
+namespace pocketmine\block;
 
 
 class Furnace extends BurningFurnace{

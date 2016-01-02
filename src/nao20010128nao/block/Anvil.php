@@ -21,54 +21,62 @@
 
 namespace pocketmine\block;
 
+use pocketmine\inventory\AnvilInventory;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
+use pocketmine\Player;
 
-class Stone extends Solid{
-	const NORMAL = 0;
-	const GRANITE = 1;
-	const POLISHED_GRANITE = 2;
-	const DIORITE = 3;
-	const POLISHED_DIORITE = 4;
-	const ANDESITE = 5;
-	const POLISHED_ANDESITE = 6;
+class Anvil extends Fallable{
 
-	protected $id = self::STONE;
+	protected $id = self::ANVIL;
+
+	public function isSolid(){
+		return false;
+	}
 
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	public function canBeActivated(){
+		return true;
+	}
+
 	public function getHardness(){
-		return 1.5;
+		return 5;
+	}
+
+	public function getResistance(){
+		return 6000;
+	}
+
+	public function getName(){
+		return "Anvil";
 	}
 
 	public function getToolType(){
 		return Tool::TYPE_PICKAXE;
 	}
 
-	public function getName(){
-		static $names = [
-			self::NORMAL => "Stone",
-			self::GRANITE => "Granite",
-			self::POLISHED_GRANITE => "Polished Granite",
-			self::DIORITE => "Diorite",
-			self::POLISHED_DIORITE => "Polished Diorite",
-			self::ANDESITE => "Andesite",
-			self::POLISHED_ANDESITE => "Polished Andesite",
-			7 => "Unknown Stone",
-		];
-		return $names[$this->meta & 0x07];
+	public function onActivate(Item $item, Player $player = null){
+		if($player instanceof Player){
+			if($player->isCreative()){
+				return true;
+			}
+
+			$player->addWindow(new AnvilInventory($this));
+		}
+
+		return true;
 	}
 
 	public function getDrops(Item $item){
 		if($item->isPickaxe() >= Tool::TIER_WOODEN){
 			return [
-				[$this->getDamage() === 0 ? Item::COBBLESTONE : Item::STONE, $this->getDamage(), 1],
+				[$this->id, 0, 1], //TODO break level
 			];
 		}else{
 			return [];
 		}
 	}
-
 }

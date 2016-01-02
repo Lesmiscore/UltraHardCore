@@ -19,7 +19,7 @@
  *
 */
 
-namespace nao20010128nao\block;
+namespace pocketmine\block;
 
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
@@ -135,7 +135,7 @@ class BurningFurnace extends Solid{
 
 	public function getDrops(Item $item){
 		$drops = [];
-		if($item->isPickaxe() >= 1){
+		if($item->isPickaxe() >= Tool::TIER_WOODEN){
 			$drops[] = [Item::FURNACE, 0, 1];
 		}
 

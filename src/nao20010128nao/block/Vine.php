@@ -2,29 +2,24 @@
 
 /*
  *
- *  _                       _           _ __  __ _             
- * (_)                     (_)         | |  \/  (_)            
- *  _ _ __ ___   __ _  __ _ _  ___ __ _| | \  / |_ _ __   ___  
- * | | '_ ` _ \ / _` |/ _` | |/ __/ _` | | |\/| | | '_ \ / _ \ 
- * | | | | | | | (_| | (_| | | (_| (_| | | |  | | | | | |  __/ 
- * |_|_| |_| |_|\__,_|\__, |_|\___\__,_|_|_|  |_|_|_| |_|\___| 
- *                     __/ |                                   
- *                    |___/                                                                     
- * 
- * This program is a third party build by ImagicalMine.
- * 
- * PocketMine is free software: you can redistribute it and/or modify
+ *  ____            _        _   __  __ _                  __  __ ____  
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
+ * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
+ *
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author ImagicalMine Team
- * @link http://forums.imagicalcorp.ml/
+ * @author PocketMine Team
+ * @link http://www.pocketmine.net/
  * 
  *
 */
 
-namespace nao20010128nao\block;
+namespace pocketmine\block;
 
 use pocketmine\entity\Entity;
 use pocketmine\item\Item;
@@ -116,25 +111,25 @@ class Vine extends Transparent{
 		}
 
 		return new AxisAlignedBB(
-				$this->x + $f1,
-				$this->y + $f2,
-				$this->z + $f3,
-				$this->x + $f4,
-				$this->y + $f5,
-				$this->z + $f6
-				);
+			$this->x + $f1,
+			$this->y + $f2,
+			$this->z + $f3,
+			$this->x + $f4,
+			$this->y + $f5,
+			$this->z + $f6
+		);
 	}
 
 
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
-		if((!$target->isTransparent() and $target->isSolid()) || $target->getId() === Block::LEAVES || $target->getId() === Block::LEAVES2){
+		if(!$target->isTransparent() and $target->isSolid()){
 			$faces = [
-					0 => 0,
-					1 => 0,
-					2 => 1,
-					3 => 4,
-					4 => 8,
-					5 => 2,
+				0 => 0,
+				1 => 0,
+				2 => 1,
+				3 => 4,
+				4 => 8,
+				5 => 2,
 			];
 			if(isset($faces[$face])){
 				$this->meta = $faces[$face];
@@ -148,20 +143,14 @@ class Vine extends Transparent{
 	}
 
 	public function onUpdate($type){
-		$faces = [
-			1 => 2,
-			2 => 5,
-			3 => 4,
-			4 => 3
-		];
 		if($type === Level::BLOCK_UPDATE_NORMAL){
-			if(isset($faces[$this->meta])){
-				if($this->getSide($faces[$this->meta])->getId() instanceof Transparent && $this->getSide(Vector3::SIDE_UP) !== Block::VINE){
-					$this->getLevel()->useBreakOn($this);
-				}
+			/*if($this->getSide(0)->getId() === self::AIR){ //Replace with common break method
+				Server::getInstance()->api->entity->drop($this, Item::get(LADDER, 0, 1));
+				$this->getLevel()->setBlock($this, new Air(), true, true, true);
 				return Level::BLOCK_UPDATE_NORMAL;
-			}
+			}*/
 		}
+
 		return false;
 	}
 

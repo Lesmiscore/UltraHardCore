@@ -1,4 +1,5 @@
 <?php
+
 /*
  *
  *  ____            _        _   __  __ _                  __  __ ____  
@@ -17,28 +18,39 @@
  * 
  *
 */
-namespace nao20010128nao\block;
+
+namespace pocketmine\block;
 
 use pocketmine\item\Item;
+use pocketmine\item\Tool;
 
-class NetherWart extends NetherCrops{
-	protected $id = self::NETHER_WART_BLOCK;
-	
+class WoodDoor extends Door{
+
+	protected $id = self::WOOD_DOOR_BLOCK;
+
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
+
 	public function getName(){
-		return "Nether Wart Block";
+		return "Wood Door Block";
 	}
 
-    public function getDrops(Item $item){
-        $drops = [];
-        if($this->meta >= 0x03){
-            $drops[] = [Item::NETHER_WART, 0, mt_rand(2, 4)];
-        }else{
-            $drops[] = [Item::NETHER_WART, 0, 1];
-        }
+	public function canBeActivated(){
+		return true;
+	}
 
-        return $drops;
+	public function getHardness(){
+		return 3;
+	}
+
+	public function getToolType(){
+		return Tool::TYPE_AXE;
+	}
+
+	public function getDrops(Item $item){
+		return [
+			[Item::WOODEN_DOOR, 0, 1],
+		];
 	}
 }

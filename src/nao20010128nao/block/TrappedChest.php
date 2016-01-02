@@ -2,29 +2,24 @@
 
 /*
  *
- *  _                       _           _ __  __ _             
- * (_)                     (_)         | |  \/  (_)            
- *  _ _ __ ___   __ _  __ _ _  ___ __ _| | \  / |_ _ __   ___  
- * | | '_ ` _ \ / _` |/ _` | |/ __/ _` | | |\/| | | '_ \ / _ \ 
- * | | | | | | | (_| | (_| | | (_| (_| | | |  | | | | | |  __/ 
- * |_|_| |_| |_|\__,_|\__, |_|\___\__,_|_|_|  |_|_|_| |_|\___| 
- *                     __/ |                                   
- *                    |___/                                                                     
- * 
- * This program is a third party build by ImagicalMine.
- * 
- * PocketMine is free software: you can redistribute it and/or modify
+ *  ____            _        _   __  __ _                  __  __ ____  
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
+ * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
+ *
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author ImagicalMine Team
- * @link http://forums.imagicalcorp.ml/
+ * @author PocketMine Team
+ * @link http://www.pocketmine.net/
  * 
  *
 */
 
-namespace nao20010128nao\block;
+namespace pocketmine\block;
 
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
@@ -35,12 +30,12 @@ use pocketmine\nbt\tag\Enum;
 use pocketmine\nbt\tag\Int;
 use pocketmine\nbt\tag\String;
 use pocketmine\Player;
-use pocketmine\tile\TrappedChest as TileChest;
+use pocketmine\tile\Chest as TileChest;
 use pocketmine\tile\Tile;
 
 class TrappedChest extends Transparent{
 
-	protected $id = self::TRAPPED_CHEST;
+	protected $id = self::CHEST;
 
 	public function __construct($meta = 0){
 		$this->meta = $meta;
@@ -103,7 +98,7 @@ class TrappedChest extends Transparent{
 		$this->getLevel()->setBlock($block, $this, true, true);
 		$nbt = new Compound("", [
 			new Enum("Items", []),
-			new String("id", Tile::TRAPPED_CHEST),
+			new String("id", Tile::CHEST),
 			new Int("x", $this->x),
 			new Int("y", $this->y),
 			new Int("z", $this->z)
@@ -120,7 +115,7 @@ class TrappedChest extends Transparent{
 			}
 		}
 
-		$tile = Tile::createTile("Trapped Chest", $this->getLevel()->getChunk($this->x >> 4, $this->z >> 4), $nbt);
+		$tile = Tile::createTile("Chest", $this->getLevel()->getChunk($this->x >> 4, $this->z >> 4), $nbt);
 
 		if($chest instanceof TileChest and $tile instanceof TileChest){
 			$chest->pairWith($tile);
@@ -154,13 +149,13 @@ class TrappedChest extends Transparent{
 			}else{
 				$nbt = new Compound("", [
 					new Enum("Items", []),
-					new String("id", Tile::TRAPPED_CHEST),
+					new String("id", Tile::CHEST),
 					new Int("x", $this->x),
 					new Int("y", $this->y),
 					new Int("z", $this->z)
 				]);
 				$nbt->Items->setTagType(NBT::TAG_Compound);
-				$chest = Tile::createTile("Trapped Chest", $this->getLevel()->getChunk($this->x >> 4, $this->z >> 4), $nbt);
+				$chest = Tile::createTile("Chest", $this->getLevel()->getChunk($this->x >> 4, $this->z >> 4), $nbt);
 			}
 
 			if(isset($chest->namedtag->Lock) and $chest->namedtag->Lock instanceof String){
@@ -172,10 +167,7 @@ class TrappedChest extends Transparent{
 			if($player->isCreative()){
 				return true;
 			}
-			
-			if($chest !== null){
-				$player->addWindow($chest->getInventory());
-			}
+			$player->addWindow($chest->getInventory());
 		}
 
 		return true;
