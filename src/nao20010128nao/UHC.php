@@ -15,9 +15,7 @@ use pocketmine\command\ConsoleCommandSender;
 use pocketmine\event\player\PlayerJoinEvent as pjoin;
 use pocketmine\event\player\PlayerQuitEvent as pquit;
 use pocketmine\event\player\PlayerDeathEvent as pdied;
-use pocketmine\event\entity\EntityDamageByEntityEvent as edbe;
-use pocketmine\event\entity\EntityDamageByBlockEvent as edbb;
-use pocketmine\event\entity\EntityDamageByChildEvent as edbc;
+use pocketmine\event\entity\EntityDamaged as ed;
 use pocketmine\event\player\PlayerMoveEvent;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\block\BlockPlaceEvent;
@@ -255,6 +253,21 @@ class UHC extends PluginBase implements Listener
 				$event->setCancelled(true);
 				$player->sendMessage("Don't break blocks out of the border!");
 			}
+		}
+	}
+	public function onEntityDamaged(ed $ev){
+		$p=$ev->getEntity();
+		if(!($p instanceof Player)){
+			return;
+		}
+		switch($this->phase){
+			case 0://Waiting in the lobby
+			case 1://Starting the game
+				$ev->setCancelled();
+				break;
+			case 2:
+			case 3:
+				break;
 		}
 	}
 }
