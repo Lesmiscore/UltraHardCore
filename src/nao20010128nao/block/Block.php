@@ -917,20 +917,6 @@ class Block extends \pocketmine\block\Block{
 	}
 
 	/**
-	 * @return int
-	 */
-	final public function getDamage(){
-		return $this->meta;
-	}
-	
-	/**
-	 * @param int $meta
-	 */
-	final public function setDamage($meta){
-		$this->meta = $meta & 0x0f;
-	}
-
-	/**
 	 * @return int 0-15
 	 */
 	public function getPower(){
@@ -1078,19 +1064,6 @@ class Block extends \pocketmine\block\Block{
 				$this->BroadcastRedstoneUpdate(Level::REDSTONE_UPDATE_BLOCK_UNCHARGE,0);
 			}		
 		}
-	}
-	
-	/**
-	 * Sets the block position to a new Position object
-	 *
-	 * @param Position $v
-	 */
-	final public function position(Position $v){
-		$this->x = (int) $v->x;
-		$this->y = (int) $v->y;
-		$this->z = (int) $v->z;
-		$this->level = $v->level;
-		$this->boundingBox = null;
 	}
 
 	/**
