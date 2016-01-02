@@ -151,7 +151,7 @@ class UHC extends PluginBase implements Listener
 		$level = $this->getServer()->getLevelByName($player["level"]);
 		$t = new Vector2($player["x"], $player["z"]);
 		$s = new Vector2($level->getSpawn()->getX(), $level->getSpawn()->getZ());
-		$worlds = $this->config->get("worlds");
+		$worlds = [$this->getServer()->getDefaultSpawn()->getLevel()->getName()];
 		foreach($worlds as $key => $value){
 			if(!empty($value[$player["level"]])){
 				$r = $value[$player["level"]];
