@@ -533,7 +533,7 @@ class Block extends \pocketmine\block\Block{
 	 * @param int $meta
 	 */
 	public function __construct($id, $meta = 0){
-		parent::__construct($id,$damage);
+		parent::__construct($id,$meta);
 	}
 	
 	/**
