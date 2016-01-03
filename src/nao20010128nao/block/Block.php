@@ -274,12 +274,6 @@ class Block extends \pocketmine\block\Block{
 	/** @var \SplFixedArray */
 	public static $transparent = null;
 
-	protected $id;
-	protected $meta = 0;
-
-	/** @var AxisAlignedBB */
-	public $boundingBox = null;
-
 	/**
 	 * Backwards-compatibility with old way to define block properties
 	 *
