@@ -301,198 +301,198 @@ class Block extends \pocketmine\block\Block{
 	}
 
 	public static function init(){
-		if(self::$list === null){
-			self::$list = new \SplFixedArray(256);
-			self::$fullList = new \SplFixedArray(4096);
-			self::$light = new \SplFixedArray(256);
-			self::$lightFilter = new \SplFixedArray(256);
-			self::$solid = new \SplFixedArray(256);
-			self::$hardness = new \SplFixedArray(256);
-			self::$transparent = new \SplFixedArray(256);
-			self::$list[self::AIR] = Air::class;
-			self::$list[self::STONE] = Stone::class;
-			self::$list[self::GRASS] = Grass::class;
-			self::$list[self::DIRT] = Dirt::class;
-			self::$list[self::COBBLESTONE] = Cobblestone::class;
-			self::$list[self::PLANKS] = Planks::class;
-			self::$list[self::SAPLING] = Sapling::class;
-			self::$list[self::BEDROCK] = Bedrock::class;
-			self::$list[self::WATER] = Water::class;
-			self::$list[self::STILL_WATER] = StillWater::class;
-			self::$list[self::LAVA] = Lava::class;
-			self::$list[self::STILL_LAVA] = StillLava::class;
-			self::$list[self::SAND] = Sand::class;
-			self::$list[self::GRAVEL] = Gravel::class;
-			self::$list[self::GOLD_ORE] = GoldOre::class;
-			self::$list[self::IRON_ORE] = IronOre::class;
-			self::$list[self::COAL_ORE] = CoalOre::class;
-			self::$list[self::WOOD] = Wood::class;
-			self::$list[self::LEAVES] = Leaves::class;
-			self::$list[self::SPONGE] = Sponge::class;
-			self::$list[self::GLASS] = Glass::class;
-			self::$list[self::LAPIS_ORE] = LapisOre::class;
-			self::$list[self::LAPIS_BLOCK] = Lapis::class;
-			self::$list[self::SANDSTONE] = Sandstone::class;
-			self::$list[self::BED_BLOCK] = Bed::class;
-			self::$list[self::COBWEB] = Cobweb::class;
-			self::$list[self::TALL_GRASS] = TallGrass::class;
-			self::$list[self::DEAD_BUSH] = DeadBush::class;
-			self::$list[self::WOOL] = Wool::class;
-			self::$list[self::DANDELION] = Dandelion::class;
-			self::$list[self::RED_FLOWER] = Flower::class;
-			self::$list[self::BROWN_MUSHROOM] = BrownMushroom::class;
-			self::$list[self::RED_MUSHROOM] = RedMushroom::class;
-			self::$list[self::GOLD_BLOCK] = Gold::class;
-			self::$list[self::IRON_BLOCK] = Iron::class;
-			self::$list[self::DOUBLE_SLAB] = DoubleSlab::class;
-			self::$list[self::SLAB] = Slab::class;
-			self::$list[self::BRICKS_BLOCK] = Bricks::class;
-			self::$list[self::TNT] = TNT::class;
-			self::$list[self::BOOKSHELF] = Bookshelf::class;
-			self::$list[self::MOSS_STONE] = MossStone::class;
-			self::$list[self::OBSIDIAN] = Obsidian::class;
-			self::$list[self::TORCH] = Torch::class;
-			self::$list[self::FIRE] = Fire::class;
-			self::$list[self::MONSTER_SPAWNER] = MonsterSpawner::class;
-			self::$list[self::WOOD_STAIRS] = WoodStairs::class;
-			self::$list[self::CHEST] = Chest::class;
+		if(parent::$list === null){
+			parent::$list = new \SplFixedArray(256);
+			parent::$fullList = new \SplFixedArray(4096);
+			parent::$light = new \SplFixedArray(256);
+			parent::$lightFilter = new \SplFixedArray(256);
+			parent::$solid = new \SplFixedArray(256);
+			parent::$hardness = new \SplFixedArray(256);
+			parent::$transparent = new \SplFixedArray(256);
+			parent::$list[self::AIR] = Air::class;
+			parent::$list[self::STONE] = Stone::class;
+			parent::$list[self::GRASS] = Grass::class;
+			parent::$list[self::DIRT] = Dirt::class;
+			parent::$list[self::COBBLESTONE] = Cobblestone::class;
+			parent::$list[self::PLANKS] = Planks::class;
+			parent::$list[self::SAPLING] = Sapling::class;
+			parent::$list[self::BEDROCK] = Bedrock::class;
+			parent::$list[self::WATER] = Water::class;
+			parent::$list[self::STILL_WATER] = StillWater::class;
+			parent::$list[self::LAVA] = Lava::class;
+			parent::$list[self::STILL_LAVA] = StillLava::class;
+			parent::$list[self::SAND] = Sand::class;
+			parent::$list[self::GRAVEL] = Gravel::class;
+			parent::$list[self::GOLD_ORE] = GoldOre::class;
+			parent::$list[self::IRON_ORE] = IronOre::class;
+			parent::$list[self::COAL_ORE] = CoalOre::class;
+			parent::$list[self::WOOD] = Wood::class;
+			parent::$list[self::LEAVES] = Leaves::class;
+			parent::$list[self::SPONGE] = Sponge::class;
+			parent::$list[self::GLASS] = Glass::class;
+			parent::$list[self::LAPIS_ORE] = LapisOre::class;
+			parent::$list[self::LAPIS_BLOCK] = Lapis::class;
+			parent::$list[self::SANDSTONE] = Sandstone::class;
+			parent::$list[self::BED_BLOCK] = Bed::class;
+			parent::$list[self::COBWEB] = Cobweb::class;
+			parent::$list[self::TALL_GRASS] = TallGrass::class;
+			parent::$list[self::DEAD_BUSH] = DeadBush::class;
+			parent::$list[self::WOOL] = Wool::class;
+			parent::$list[self::DANDELION] = Dandelion::class;
+			parent::$list[self::RED_FLOWER] = Flower::class;
+			parent::$list[self::BROWN_MUSHROOM] = BrownMushroom::class;
+			parent::$list[self::RED_MUSHROOM] = RedMushroom::class;
+			parent::$list[self::GOLD_BLOCK] = Gold::class;
+			parent::$list[self::IRON_BLOCK] = Iron::class;
+			parent::$list[self::DOUBLE_SLAB] = DoubleSlab::class;
+			parent::$list[self::SLAB] = Slab::class;
+			parent::$list[self::BRICKS_BLOCK] = Bricks::class;
+			parent::$list[self::TNT] = TNT::class;
+			parent::$list[self::BOOKSHELF] = Bookshelf::class;
+			parent::$list[self::MOSS_STONE] = MossStone::class;
+			parent::$list[self::OBSIDIAN] = Obsidian::class;
+			parent::$list[self::TORCH] = Torch::class;
+			parent::$list[self::FIRE] = Fire::class;
+			parent::$list[self::MONSTER_SPAWNER] = MonsterSpawner::class;
+			parent::$list[self::WOOD_STAIRS] = WoodStairs::class;
+			parent::$list[self::CHEST] = Chest::class;
 
-			self::$list[self::DIAMOND_ORE] = DiamondOre::class;
-			self::$list[self::DIAMOND_BLOCK] = Diamond::class;
-			self::$list[self::WORKBENCH] = Workbench::class;
-			self::$list[self::WHEAT_BLOCK] = Wheat::class;
-			self::$list[self::FARMLAND] = Farmland::class;
-			self::$list[self::FURNACE] = Furnace::class;
-			self::$list[self::BURNING_FURNACE] = BurningFurnace::class;
-			self::$list[self::SIGN_POST] = SignPost::class;
-			self::$list[self::WOOD_DOOR_BLOCK] = WoodDoor::class;
-			self::$list[self::LADDER] = Ladder::class;
+			parent::$list[self::DIAMOND_ORE] = DiamondOre::class;
+			parent::$list[self::DIAMOND_BLOCK] = Diamond::class;
+			parent::$list[self::WORKBENCH] = Workbench::class;
+			parent::$list[self::WHEAT_BLOCK] = Wheat::class;
+			parent::$list[self::FARMLAND] = Farmland::class;
+			parent::$list[self::FURNACE] = Furnace::class;
+			parent::$list[self::BURNING_FURNACE] = BurningFurnace::class;
+			parent::$list[self::SIGN_POST] = SignPost::class;
+			parent::$list[self::WOOD_DOOR_BLOCK] = WoodDoor::class;
+			parent::$list[self::LADDER] = Ladder::class;
 
-			self::$list[self::COBBLESTONE_STAIRS] = CobblestoneStairs::class;
-			self::$list[self::WALL_SIGN] = WallSign::class;
+			parent::$list[self::COBBLESTONE_STAIRS] = CobblestoneStairs::class;
+			parent::$list[self::WALL_SIGN] = WallSign::class;
 
-			self::$list[self::IRON_DOOR_BLOCK] = IronDoor::class;
-			self::$list[self::REDSTONE_ORE] = RedstoneOre::class;
-			self::$list[self::GLOWING_REDSTONE_ORE] = GlowingRedstoneOre::class;
+			parent::$list[self::IRON_DOOR_BLOCK] = IronDoor::class;
+			parent::$list[self::REDSTONE_ORE] = RedstoneOre::class;
+			parent::$list[self::GLOWING_REDSTONE_ORE] = GlowingRedstoneOre::class;
 
-			self::$list[self::SNOW_LAYER] = SnowLayer::class;
-			self::$list[self::ICE] = Ice::class;
-			self::$list[self::SNOW_BLOCK] = Snow::class;
-			self::$list[self::CACTUS] = Cactus::class;
-			self::$list[self::CLAY_BLOCK] = Clay::class;
-			self::$list[self::SUGARCANE_BLOCK] = Sugarcane::class;
+			parent::$list[self::SNOW_LAYER] = SnowLayer::class;
+			parent::$list[self::ICE] = Ice::class;
+			parent::$list[self::SNOW_BLOCK] = Snow::class;
+			parent::$list[self::CACTUS] = Cactus::class;
+			parent::$list[self::CLAY_BLOCK] = Clay::class;
+			parent::$list[self::SUGARCANE_BLOCK] = Sugarcane::class;
 
-			self::$list[self::FENCE] = Fence::class;
-			self::$list[self::PUMPKIN] = Pumpkin::class;
-			self::$list[self::NETHERRACK] = Netherrack::class;
-			self::$list[self::SOUL_SAND] = SoulSand::class;
-			self::$list[self::GLOWSTONE_BLOCK] = Glowstone::class;
+			parent::$list[self::FENCE] = Fence::class;
+			parent::$list[self::PUMPKIN] = Pumpkin::class;
+			parent::$list[self::NETHERRACK] = Netherrack::class;
+			parent::$list[self::SOUL_SAND] = SoulSand::class;
+			parent::$list[self::GLOWSTONE_BLOCK] = Glowstone::class;
 
-			self::$list[self::LIT_PUMPKIN] = LitPumpkin::class;
-			self::$list[self::CAKE_BLOCK] = Cake::class;
+			parent::$list[self::LIT_PUMPKIN] = LitPumpkin::class;
+			parent::$list[self::CAKE_BLOCK] = Cake::class;
 
-			self::$list[self::TRAPDOOR] = Trapdoor::class;
+			parent::$list[self::TRAPDOOR] = Trapdoor::class;
 
-			self::$list[self::STONE_BRICKS] = StoneBricks::class;
+			parent::$list[self::STONE_BRICKS] = StoneBricks::class;
 
-			self::$list[self::IRON_BARS] = IronBars::class;
-			self::$list[self::GLASS_PANE] = GlassPane::class;
-			self::$list[self::MELON_BLOCK] = Melon::class;
-			self::$list[self::PUMPKIN_STEM] = PumpkinStem::class;
-			self::$list[self::MELON_STEM] = MelonStem::class;
-			self::$list[self::VINE] = Vine::class;
-			self::$list[self::FENCE_GATE] = FenceGate::class;
-			self::$list[self::BRICK_STAIRS] = BrickStairs::class;
-			self::$list[self::STONE_BRICK_STAIRS] = StoneBrickStairs::class;
+			parent::$list[self::IRON_BARS] = IronBars::class;
+			parent::$list[self::GLASS_PANE] = GlassPane::class;
+			parent::$list[self::MELON_BLOCK] = Melon::class;
+			parent::$list[self::PUMPKIN_STEM] = PumpkinStem::class;
+			parent::$list[self::MELON_STEM] = MelonStem::class;
+			parent::$list[self::VINE] = Vine::class;
+			parent::$list[self::FENCE_GATE] = FenceGate::class;
+			parent::$list[self::BRICK_STAIRS] = BrickStairs::class;
+			parent::$list[self::STONE_BRICK_STAIRS] = StoneBrickStairs::class;
 
-			self::$list[self::MYCELIUM] = Mycelium::class;
-			self::$list[self::WATER_LILY] = WaterLily::class;
-			self::$list[self::NETHER_BRICKS] = NetherBrick::class;
-			self::$list[self::NETHER_BRICK_FENCE] = NetherBrickFence::class;
-			self::$list[self::NETHER_BRICKS_STAIRS] = NetherBrickStairs::class;
+			parent::$list[self::MYCELIUM] = Mycelium::class;
+			parent::$list[self::WATER_LILY] = WaterLily::class;
+			parent::$list[self::NETHER_BRICKS] = NetherBrick::class;
+			parent::$list[self::NETHER_BRICK_FENCE] = NetherBrickFence::class;
+			parent::$list[self::NETHER_BRICKS_STAIRS] = NetherBrickStairs::class;
 
-			self::$list[self::ENCHANTING_TABLE] = EnchantingTable::class;
-			self::$list[self::BREWING_STAND] = BrewingStand::class;
-			self::$list[self::END_PORTAL_FRAME] = EndPortalFrame::class;
-			self::$list[self::END_STONE] = EndStone::class;
-			self::$list[self::SANDSTONE_STAIRS] = SandstoneStairs::class;
-			self::$list[self::EMERALD_ORE] = EmeraldOre::class;
+			parent::$list[self::ENCHANTING_TABLE] = EnchantingTable::class;
+			parent::$list[self::BREWING_STAND] = BrewingStand::class;
+			parent::$list[self::END_PORTAL_FRAME] = EndPortalFrame::class;
+			parent::$list[self::END_STONE] = EndStone::class;
+			parent::$list[self::SANDSTONE_STAIRS] = SandstoneStairs::class;
+			parent::$list[self::EMERALD_ORE] = EmeraldOre::class;
 
-			self::$list[self::EMERALD_BLOCK] = Emerald::class;
-			self::$list[self::SPRUCE_WOOD_STAIRS] = SpruceWoodStairs::class;
-			self::$list[self::BIRCH_WOOD_STAIRS] = BirchWoodStairs::class;
-			self::$list[self::JUNGLE_WOOD_STAIRS] = JungleWoodStairs::class;
-			self::$list[self::STONE_WALL] = StoneWall::class;
-			self::$list[self::FLOWER_POT_BLOCK] = FlowerPot::class;
-			self::$list[self::CARROT_BLOCK] = Carrot::class;
-			self::$list[self::POTATO_BLOCK] = Potato::class;
-			self::$list[self::ANVIL] = Anvil::class;
-			self::$list[self::TRAPPED_CHEST] = TrappedChest::class;
-			self::$list[self::REDSTONE_BLOCK] = Redstone::class;
+			parent::$list[self::EMERALD_BLOCK] = Emerald::class;
+			parent::$list[self::SPRUCE_WOOD_STAIRS] = SpruceWoodStairs::class;
+			parent::$list[self::BIRCH_WOOD_STAIRS] = BirchWoodStairs::class;
+			parent::$list[self::JUNGLE_WOOD_STAIRS] = JungleWoodStairs::class;
+			parent::$list[self::STONE_WALL] = StoneWall::class;
+			parent::$list[self::FLOWER_POT_BLOCK] = FlowerPot::class;
+			parent::$list[self::CARROT_BLOCK] = Carrot::class;
+			parent::$list[self::POTATO_BLOCK] = Potato::class;
+			parent::$list[self::ANVIL] = Anvil::class;
+			parent::$list[self::TRAPPED_CHEST] = TrappedChest::class;
+			parent::$list[self::REDSTONE_BLOCK] = Redstone::class;
 
-			self::$list[self::QUARTZ_BLOCK] = Quartz::class;
-			self::$list[self::QUARTZ_STAIRS] = QuartzStairs::class;
-			self::$list[self::DOUBLE_WOOD_SLAB] = DoubleWoodSlab::class;
-			self::$list[self::WOOD_SLAB] = WoodSlab::class;
-			self::$list[self::STAINED_CLAY] = StainedClay::class;
+			parent::$list[self::QUARTZ_BLOCK] = Quartz::class;
+			parent::$list[self::QUARTZ_STAIRS] = QuartzStairs::class;
+			parent::$list[self::DOUBLE_WOOD_SLAB] = DoubleWoodSlab::class;
+			parent::$list[self::WOOD_SLAB] = WoodSlab::class;
+			parent::$list[self::STAINED_CLAY] = StainedClay::class;
 
-			self::$list[self::LEAVES2] = Leaves2::class;
-			self::$list[self::WOOD2] = Wood2::class;
-			self::$list[self::ACACIA_WOOD_STAIRS] = AcaciaWoodStairs::class;
-			self::$list[self::DARK_OAK_WOOD_STAIRS] = DarkOakWoodStairs::class;
+			parent::$list[self::LEAVES2] = Leaves2::class;
+			parent::$list[self::WOOD2] = Wood2::class;
+			parent::$list[self::ACACIA_WOOD_STAIRS] = AcaciaWoodStairs::class;
+			parent::$list[self::DARK_OAK_WOOD_STAIRS] = DarkOakWoodStairs::class;
 
-			self::$list[self::IRON_TRAPDOOR] = IronTrapdoor::class;
-			self::$list[self::HAY_BALE] = HayBale::class;
-			self::$list[self::CARPET] = Carpet::class;
-			self::$list[self::HARDENED_CLAY] = HardenedClay::class;
-			self::$list[self::COAL_BLOCK] = Coal::class;
-			self::$list[self::PACKED_ICE] = PackedIce::class;
-			self::$list[self::DOUBLE_PLANT] = DoublePlant::class;
+			parent::$list[self::IRON_TRAPDOOR] = IronTrapdoor::class;
+			parent::$list[self::HAY_BALE] = HayBale::class;
+			parent::$list[self::CARPET] = Carpet::class;
+			parent::$list[self::HARDENED_CLAY] = HardenedClay::class;
+			parent::$list[self::COAL_BLOCK] = Coal::class;
+			parent::$list[self::PACKED_ICE] = PackedIce::class;
+			parent::$list[self::DOUBLE_PLANT] = DoublePlant::class;
 
-			self::$list[self::FENCE_GATE_SPRUCE] = FenceGateSpruce::class;
-			self::$list[self::FENCE_GATE_BIRCH] = FenceGateBirch::class;
-			self::$list[self::FENCE_GATE_JUNGLE] = FenceGateJungle::class;
-			self::$list[self::FENCE_GATE_DARK_OAK] = FenceGateDarkOak::class;
-			self::$list[self::FENCE_GATE_ACACIA] = FenceGateAcacia::class;
+			parent::$list[self::FENCE_GATE_SPRUCE] = FenceGateSpruce::class;
+			parent::$list[self::FENCE_GATE_BIRCH] = FenceGateBirch::class;
+			parent::$list[self::FENCE_GATE_JUNGLE] = FenceGateJungle::class;
+			parent::$list[self::FENCE_GATE_DARK_OAK] = FenceGateDarkOak::class;
+			parent::$list[self::FENCE_GATE_ACACIA] = FenceGateAcacia::class;
 
-			self::$list[self::GRASS_PATH] = GrassPath::class;
+			parent::$list[self::GRASS_PATH] = GrassPath::class;
 
-			self::$list[self::PODZOL] = Podzol::class;
-			self::$list[self::BEETROOT_BLOCK] = Beetroot::class;
-			self::$list[self::STONECUTTER] = Stonecutter::class;
-			self::$list[self::GLOWING_OBSIDIAN] = GlowingObsidian::class;
+			parent::$list[self::PODZOL] = Podzol::class;
+			parent::$list[self::BEETROOT_BLOCK] = Beetroot::class;
+			parent::$list[self::STONECUTTER] = Stonecutter::class;
+			parent::$list[self::GLOWING_OBSIDIAN] = GlowingObsidian::class;
 
-			foreach(self::$list as $id => $class){
+			foreach(parent::$list as $id => $class){
 				if($class !== null){
 					/** @var Block $block */
 					$block = new $class();
 
 					for($data = 0; $data < 16; ++$data){
-						self::$fullList[($id << 4) | $data] = new $class($data);
+						parent::$fullList[($id << 4) | $data] = new $class($data);
 					}
 
-					self::$solid[$id] = $block->isSolid();
-					self::$transparent[$id] = $block->isTransparent();
-					self::$hardness[$id] = $block->getHardness();
-					self::$light[$id] = $block->getLightLevel();
+					parent::$solid[$id] = $block->isSolid();
+					parent::$transparent[$id] = $block->isTransparent();
+					parent::$hardness[$id] = $block->getHardness();
+					parent::$light[$id] = $block->getLightLevel();
 
 					if($block->isSolid()){
 						if($block->isTransparent()){
 							if($block instanceof Liquid or $block instanceof Ice){
-								self::$lightFilter[$id] = 2;
+								parent::$lightFilter[$id] = 2;
 							}else{
-								self::$lightFilter[$id] = 1;
+								parent::$lightFilter[$id] = 1;
 							}
 						}else{
-							self::$lightFilter[$id] = 15;
+							parent::$lightFilter[$id] = 15;
 						}
 					}else{
-						self::$lightFilter[$id] = 1;
+						parent::$lightFilter[$id] = 1;
 					}
 				}else{
-					self::$lightFilter[$id] = 1;
+					parent::$lightFilter[$id] = 1;
 					for($data = 0; $data < 16; ++$data){
-						self::$fullList[($id << 4) | $data] = new Block($id, $data);
+						parent::$fullList[($id << 4) | $data] = new Block($id, $data);
 					}
 				}
 			}
@@ -508,7 +508,7 @@ class Block extends \pocketmine\block\Block{
 	 */
 	public static function get($id, $meta = 0, Position $pos = null){
 		try{
-			$block = self::$list[$id];
+			$block = parent::$list[$id];
 			if($block !== null){
 				$block = new $block($meta);
 			}else{
@@ -713,7 +713,7 @@ class Block extends \pocketmine\block\Block{
 	 * @return array
 	 */
 	public function getDrops(Item $item){
-		if(!isset(self::$list[$this->getId()])){ //Unknown blocks
+		if(!isset(parent::$list[$this->getId()])){ //Unknown blocks
 			return [];
 		}else{
 			return [
