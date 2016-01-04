@@ -47,4 +47,7 @@ class Bedrock extends Solid{
 		return false;
 	}
 
+	public function onUpdate($type){
+		//I'm already the wall or the bottom of the world!
+	}
 }
