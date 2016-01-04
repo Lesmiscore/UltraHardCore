@@ -133,7 +133,7 @@ class UHC extends PluginBase implements Listener
 		$this->wfp->sendEveryone();
 	}
 	public function randName(){
-		return /*substr(*/base64_encode(@Utils::getRandomBytes(48, false))/*, 3, 10)*/;
+		return base64_encode(@Utils::getRandomBytes(48, false));
 	}
 	public function gameOver($p){
 		$wasInGame=false;
