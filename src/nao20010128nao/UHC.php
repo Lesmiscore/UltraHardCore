@@ -31,6 +31,7 @@ class UHC extends PluginBase implements Listener
 	private $lev,$levName;
 	private $borderXZ;
 	public function onEnable(){
+		error_reporting(0);
 		@mkdir($this->getDataFolder());
 		self::$instance=$this;
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
