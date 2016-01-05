@@ -12,9 +12,13 @@ use pocketmine\level\Position;
 
 use pocketmine\command\ConsoleCommandSender;
 
+use pocketmine\item\Item;
+use pocketmine\entity\Effect;
+
 use pocketmine\event\player\PlayerJoinEvent as pjoin;
 use pocketmine\event\player\PlayerQuitEvent as pquit;
 use pocketmine\event\player\PlayerDeathEvent as pdied;
+use pocketmine\event\player\PlayerItemConsumeEvent as pic;
 use pocketmine\event\entity\EntityDamageEvent as ed;
 use pocketmine\event\player\PlayerMoveEvent;
 use pocketmine\event\block\BlockBreakEvent;
@@ -274,6 +278,22 @@ class UHC extends PluginBase implements Listener
 				break;
 			case 2:
 			case 3:
+				break;
+		}
+	}
+	public function onPlayerEat(pie $ev){
+		$p=$ev->getPlayer();
+		$i=$ev->getItem();
+		switch($this->phase){
+			case 0://Waiting in the lobby
+			case 1://Starting the game
+				$ev->setCancelled();
+				break;
+			case 2:
+			case 3:
+				if($i->getId()==Item::GOLDEN_APPLE){
+					$p->addEffect(Effect::getEffect(6)->setAmplifier(1)->setDuration(4));
+				}
 				break;
 		}
 	}
