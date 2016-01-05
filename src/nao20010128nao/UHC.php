@@ -40,7 +40,7 @@ class UHC extends PluginBase implements Listener
 		self::$instance=$this;
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->console=new ConsoleCommandSender();
-		\nao20010128nao\block\Block::init();
+		\nao20010128nao\block\Block::pollute();
 		
 		$this->ph1=new PopupBroadcast("The game is running...\nPhase 1 - Collect Anything!");
 		$this->ph2=new PopupBroadcast("The game is running...\nPhase 2 - Live or Die!");

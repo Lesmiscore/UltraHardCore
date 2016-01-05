@@ -68,7 +68,7 @@ class Block extends \pocketmine\block\Block{
 		return isset($map[$key]) ? $this->{$map[$key]}() : null;
 	}
 
-	public static function init(){
+	public static function pollute(){
 		if(parent::$list === null){
 			parent::$list = new \SplFixedArray(256);
 			parent::$fullList = new \SplFixedArray(4096);
