@@ -281,7 +281,7 @@ class UHC extends PluginBase implements Listener
 				break;
 		}
 	}
-	public function onPlayerEat(pie $ev){
+	public function onPlayerEat(pic $ev){
 		$p=$ev->getPlayer();
 		$i=$ev->getItem();
 		switch($this->phase){
