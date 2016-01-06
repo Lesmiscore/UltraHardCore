@@ -11,8 +11,9 @@ permissions:
   children:
    uhc.all:
     description: ""
-     uhc.players:
-      description: ""
-     uhc.admin:
-      description: ""
-      default: op
+     children:
+      uhc.players:
+       description: ""
+      uhc.admin:
+       description: ""
+       default: op
