@@ -7,13 +7,13 @@ author: nao20010128nao
 description: DESC
 website: https://github.com/nao20010128nao
 permissions:
- uhc.*:
-  children:
-   uhc.all:
-    description: ""
-     children:
-      uhc.players:
-       description: ""
-      uhc.admin:
-       description: ""
-       default: op
+  uhc.*:
+    children:
+      uhc.all:
+        description: ""
+        children:
+          uhc.players:
+            description: ""
+          uhc.admin:
+            description: ""
+            default: op
