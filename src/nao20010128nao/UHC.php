@@ -60,6 +60,7 @@ class UHC extends PluginBase implements Listener
 	 // MISC //
 	//////////
 	public function onTimeup(){
+		$this->console->sendMessage("onTimeup: ".$this->phase);
 		switch($this->phase){
 			case 0://Waiting in the lobby
 				$this->getServer()->getScheduler()->scheduleRepeatingTask(new TickClock(10*60/*sec.*/,$this),20,10*60);
@@ -84,24 +85,37 @@ class UHC extends PluginBase implements Listener
 		}
 	}
 	public function start(){
+		$this->console->sendMessage("Preparing to start...");
 		$this->getServer()->broadcastMessage("Time up!");
 		$players=$this->getServer()->getOnlinePlayers();
 		if(count($players)<8){
 			$this->phase=0;
 			$this->onTimeup();
+			$this->console->sendMessage("8 players are needed to start the game.");
 			$this->getServer()->broadcastMessage("Players are not enough...");
 			return;
 		}
 		array_shuffle($players);
 		array_shuffle($players);
+		$this->console->sendMessage("The game will starts with ".count($players)." players.");
+		$names=array();
 		if(count($players)<24){
+			$this->console->sendMessage("All players will join.");
 			$this->ingame=$players;
+			foreach($players as $p){
+				$names[]=$p->getName();
+			}
 		}else{
+			$this->console->sendMessage("Only 24 players will join.");
 			$this->ingame=$ing=array();
 			for($i=0;$i<24;$i++){
 				$ing[i]=$players[i];
+				$names[i]=$players[i]->getName();
 			}
+			$this->console->sendMessage("These players will join:\n".implode(", ",$names));
 		}
+		$this->getServer()->broadcastMessage("The game will starts with these players:\n".implode(", ",$names));
+			
 		$this->out=array();
 		$this->borderXZ=30*60+10;
 		$this->getServer()->generateLevel($levName=$this->levName=$this->randomName());
@@ -148,6 +162,8 @@ class UHC extends PluginBase implements Listener
 			unset($this->ingame[in_array($p,$this->ingame)]);
 			$wasInGame=true;
 		}
+		$this->console->sendMessage("GAME OVER:".$p->getName());
+		
 		$this->out[]=$p;
 		$p->setGamemode(3);
 		$p->setHealth(20);
